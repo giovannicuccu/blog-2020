@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <appender name="FILEBEAT" class="ch.qos.logback.core.FileAppender">
+    <file>target/classes/filebeat/diagnostic.log</file>
+	<append>false</append>
+	<immediateFlush>true</immediateFlush>
+    <encoder>
+      <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date %level [%thread] %logger [%file:%line] %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <logger name="filebeat" additivity="false">
+    <appender-ref ref="FILEBEAT" />
+  </logger>
+
+	<logger name="org.apache.kafka" level="WARN"/>
+	<logger name="com.zaxxer" level="WARN"/>
+	<logger name="org.apache.ibatis" level="WARN"/>
+	<logger name="org.testcontainers" level="WARN"/>
+	<logger name="com.github.dockerjava" level="WARN"/>
+
+  <root level="debug">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>

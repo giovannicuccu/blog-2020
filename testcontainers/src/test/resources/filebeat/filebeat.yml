@@ -1,0 +1,18 @@
+fields: {diag_topic: "diagnostic"}
+
+filebeat.inputs:
+- type: log
+  paths:
+    - /var/log/app/*.log
+
+output.kafka:
+  hosts: ["kafka:9092"]
+
+  # message topic selection + partitioning
+  topic: '%{[fields.diag_topic]}'
+  partition.round_robin:
+    reachable_only: false
+
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
