@@ -9,7 +9,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>testcontainers</module>
-	</modules>
+        <module>fasterxml</module>
+    </modules>
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
